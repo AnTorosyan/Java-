@@ -1,0 +1,34 @@
+public class Main {
+    public static void main(String[] args) {
+
+        // Создание объектов разными способами
+        Cursor c1 = new Cursor();
+        Cursor c2 = new Cursor(5, 7, "vertical", 3);
+        Cursor c3 = new Cursor(c2);
+
+        // Демонстрация методов
+        c1.display();
+        c2.display();
+        c3.display();
+
+        c1.move(10, 15);
+        c1.changeType("vertical");
+        c1.changeSize(5);
+        c1.hide();
+        c1.display();
+
+        c1.show();
+        c1.display();
+
+        // Массив объектов
+        Cursor[] arr = new Cursor[3];
+        arr[0] = new Cursor(1,1,"horizontal",1);
+        arr[1] = new Cursor(2,2,"vertical",2);
+        arr[2] = new Cursor(3,3,"horizontal",3);
+
+        System.out.println("\nМассив курсоров:");
+        for (Cursor c : arr) {
+            c.display();
+        }
+    }
+}
