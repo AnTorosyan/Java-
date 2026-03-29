@@ -1,0 +1,3 @@
+public interface Array<T> {
+    T addArrays(T other);   // поэлементное сложение
+}
