@@ -1,0 +1,48 @@
+public class Main {
+    public static void main(String[] args) {
+
+        // ===== Pair =====
+        Pair p1 = new Pair(2, 3);
+        Pair p2 = new Pair(4, 5);
+        Pair p3 = new Pair(p1);
+
+        System.out.println("Pair:");
+        p1.display();
+        p2.display();
+        p3.display();
+
+        Pair sumPair = p1.add(p2);
+        Pair multPair = p1.multiply(3);
+
+        System.out.println("Сумма пар: " + sumPair);
+        System.out.println("Умножение пары: " + multPair);
+
+        // ===== Money =====
+        Money m1 = new Money(10, 50);
+        Money m2 = new Money(5, 80);
+        Money m3 = new Money(m1);
+
+        System.out.println("\nMoney:");
+        m1.display();
+        m2.display();
+        m3.display();
+
+        Money sumMoney = m1.add(m2);
+        Money subMoney = m1.subtract(m2);
+        Money divMoney = m1.divide(2);
+
+        System.out.println("Сложение: " + sumMoney);
+        System.out.println("Вычитание: " + subMoney);
+        System.out.println("Деление: " + divMoney);
+
+        // Массив объектов
+        Money[] arr = new Money[2];
+        arr[0] = new Money(3, 40);
+        arr[1] = new Money(7, 90);
+
+        System.out.println("\nМассив Money:");
+        for (Money m : arr) {
+            m.display();
+        }
+    }
+}
