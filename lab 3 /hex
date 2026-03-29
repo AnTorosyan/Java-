@@ -1,0 +1,58 @@
+public class Hex implements Array<Hex> {
+
+    private int[] digits = new int[100]; // каждая цифра 0..15
+
+    public Hex() {}
+
+    // ввод строки HEX
+    public Hex(String hex) {
+        hex = hex.toUpperCase();
+        int j = 0;
+
+        for (int i = hex.length() - 1; i >= 0; i--) {
+            char c = hex.charAt(i);
+            int value;
+
+            if (c >= '0' && c <= '9') value = c - '0';
+            else if (c >= 'A' && c <= 'F') value = 10 + c - 'A';
+            else {
+                System.out.println("Ошибка HEX");
+                System.exit(1);
+                return;
+            }
+
+            digits[j++] = value;
+        }
+    }
+
+    // поразрядное сложение HEX чисел
+    @Override
+    public Hex addArrays(Hex other) {
+        Hex result = new Hex();
+        int carry = 0;
+
+        for (int i = 0; i < 100; i++) {
+            int sum = digits[i] + other.digits[i] + carry;
+            result.digits[i] = sum % 16;
+            carry = sum / 16;
+        }
+
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        boolean started = false;
+
+        for (int i = 99; i >= 0; i--) {
+            if (digits[i] != 0) started = true;
+            if (started) {
+                if (digits[i] < 10) sb.append(digits[i]);
+                else sb.append((char)('A' + digits[i] - 10));
+            }
+        }
+
+        return started ? sb.toString() : "0";
+    }
+}
