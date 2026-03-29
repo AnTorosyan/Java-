@@ -1,0 +1,34 @@
+public class Money implements Array<Money> {
+
+    private long rubles;
+    private int kopeks; // 0..99
+
+    public Money() {
+        rubles = 0;
+        kopeks = 0;
+    }
+
+    public Money(long rubles, int kopeks) {
+        if (rubles < 0 || kopeks < 0 || kopeks >= 100) {
+            System.out.println("Ошибка: неверные деньги");
+            System.exit(1);
+        }
+        this.rubles = rubles;
+        this.kopeks = kopeks;
+    }
+
+    // сложение через интерфейс
+    @Override
+    public Money addArrays(Money other) {
+        int totalKopeks = this.kopeks + other.kopeks;
+        long carry = totalKopeks / 100;
+        totalKopeks %= 100;
+        long totalRubles = this.rubles + other.rubles + carry;
+        return new Money(totalRubles, totalKopeks);
+    }
+
+    @Override
+    public String toString() {
+        return rubles + " руб. " + kopeks + " коп.";
+    }
+}
