@@ -1,0 +1,94 @@
+public class Money extends Pair {
+
+    private int rubles;
+    private int kopeks;
+
+    // Конструктор без аргументов
+    public Money() {
+        rubles = 0;
+        kopeks = 0;
+    }
+
+    // Конструктор инициализации
+    public Money(int rubles, int kopeks) {
+        setRubles(rubles);
+        setKopeks(kopeks);
+    }
+
+    // Конструктор копирования
+    public Money(Money other) {
+        this.rubles = other.rubles;
+        this.kopeks = other.kopeks;
+    }
+
+    // GET
+    public int getRubles() {
+        return rubles;
+    }
+
+    public int getKopeks() {
+        return kopeks;
+    }
+
+    // SET с проверкой
+    public void setRubles(int rubles) {
+        if (rubles < 0) {
+            System.out.println("Ошибка: рубли не могут быть отрицательными");
+            System.exit(1);
+        }
+        this.rubles = rubles;
+    }
+
+    public void setKopeks(int kopeks) {
+        if (kopeks < 0 || kopeks >= 100) {
+            System.out.println("Ошибка: копейки должны быть 0..99");
+            System.exit(1);
+        }
+        this.kopeks = kopeks;
+    }
+
+    // ПЕРЕОПРЕДЕЛЕНИЕ сложения денег
+    public Money add(Money other) {
+        int totalKopeks = this.kopeks + other.kopeks;
+        int carry = totalKopeks / 100;
+        totalKopeks %= 100;
+
+        int totalRubles = this.rubles + other.rubles + carry;
+        return new Money(totalRubles, totalKopeks);
+    }
+
+    // Вычитание денег
+    public Money subtract(Money other) {
+        int total1 = rubles * 100 + kopeks;
+        int total2 = other.rubles * 100 + other.kopeks;
+
+        if (total1 < total2) {
+            System.out.println("Ошибка: отрицательная сумма");
+            System.exit(1);
+        }
+
+        int diff = total1 - total2;
+        return new Money(diff / 100, diff % 100);
+    }
+
+    // Деление денег
+    public Money divide(int n) {
+        if (n <= 0) {
+            System.out.println("Ошибка: делитель должен быть > 0");
+            System.exit(1);
+        }
+
+        int total = rubles * 100 + kopeks;
+        int result = total / n;
+        return new Money(result / 100, result % 100);
+    }
+
+    public void display() {
+        System.out.println(this);
+    }
+
+    @Override
+    public String toString() {
+        return rubles + " руб. " + kopeks + " коп.";
+    }
+}
