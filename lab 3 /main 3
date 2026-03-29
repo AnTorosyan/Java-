@@ -1,0 +1,27 @@
+public class Main {
+    public static void main(String[] args) {
+
+        // ===== Money =====
+        Money m1 = new Money(10, 50);
+        Money m2 = new Money(5, 80);
+
+        Money m3 = m1.addArrays(m2);
+        System.out.println("Money: " + m3);
+
+        // ===== Hex =====
+        Hex h1 = new Hex("A3");
+        Hex h2 = new Hex("1F");
+
+        Hex h3 = h1.addArrays(h2);
+        System.out.println("Hex: " + h3);
+
+        // ===== Полиморфизм =====
+        Array<Money> am = new Money(3,40);
+        Array<Money> am2 = new Money(1,70);
+        System.out.println("Через интерфейс Money: " + am.addArrays((Money) am2));
+
+        Array<Hex> ah = new Hex("FF");
+        Array<Hex> ah2 = new Hex("1");
+        System.out.println("Через интерфейс Hex: " + ah.addArrays((Hex) ah2));
+    }
+}
