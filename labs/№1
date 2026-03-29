@@ -1,1 +1,88 @@
+public class Cursor {
+    private int x;
+    private int y;
+    private String type; // horizontal / vertical
+    private int size;    // 1..15
+    private boolean visible;
 
+    // Конструктор без аргументов
+    public Cursor() {
+        this.x = 1;
+        this.y = 1;
+        this.type = "horizontal";
+        this.size = 1;
+        this.visible = true;
+    }
+
+    // Конструктор инициализации
+    public Cursor(int x, int y, String type, int size) {
+        if (x <= 0 || y <= 0 || size < 1 || size > 15 ||
+                (!type.equals("horizontal") && !type.equals("vertical"))) {
+            System.out.println("Ошибка: неверные параметры курсора");
+            System.exit(1);
+        }
+        this.x = x;
+        this.y = y;
+        this.type = type;
+        this.size = size;
+        this.visible = true;
+    }
+
+    // Конструктор копирования
+    public Cursor(Cursor other) {
+        this.x = other.x;
+        this.y = other.y;
+        this.type = other.type;
+        this.size = other.size;
+        this.visible = other.visible;
+    }
+
+    // Изменение координат
+    public void move(int newX, int newY) {
+        if (newX <= 0 || newY <= 0) {
+            System.out.println("Ошибка: координаты должны быть положительными");
+            System.exit(1);
+        }
+        x = newX;
+        y = newY;
+    }
+
+    // Изменение типа курсора
+    public void changeType(String newType) {
+        if (!newType.equals("horizontal") && !newType.equals("vertical")) {
+            System.out.println("Ошибка: тип должен быть horizontal или vertical");
+            System.exit(1);
+        }
+        type = newType;
+    }
+
+    // Изменение размера
+    public void changeSize(int newSize) {
+        if (newSize < 1 || newSize > 15) {
+            System.out.println("Ошибка: размер 1..15");
+            System.exit(1);
+        }
+        size = newSize;
+    }
+
+    // Гашение курсора
+    public void hide() {
+        visible = false;
+    }
+
+    // Восстановление курсора
+    public void show() {
+        visible = true;
+    }
+
+    // Вывод информации
+    public void display() {
+        System.out.println(this);
+    }
+
+    @Override
+    public String toString() {
+        return "Cursor: (" + x + ", " + y + "), type=" + type +
+                ", size=" + size + ", visible=" + visible;
+    }
+}
