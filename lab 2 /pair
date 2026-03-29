@@ -1,0 +1,59 @@
+public class Pair {
+    private int first;
+    private int second;
+
+    // Конструктор без аргументов
+    public Pair() {
+        this.first = 0;
+        this.second = 0;
+    }
+
+    // Конструктор инициализации
+    public Pair(int first, int second) {
+        setFirst(first);
+        setSecond(second);
+    }
+
+    // Конструктор копирования
+    public Pair(Pair other) {
+        this.first = other.first;
+        this.second = other.second;
+    }
+
+    // GET
+    public int getFirst() {
+        return first;
+    }
+
+    public int getSecond() {
+        return second;
+    }
+
+    // SET с проверкой
+    public void setFirst(int first) {
+        this.first = first;
+    }
+
+    public void setSecond(int second) {
+        this.second = second;
+    }
+
+    // Умножение на число
+    public Pair multiply(int n) {
+        return new Pair(first * n, second * n);
+    }
+
+    // Сложение пар
+    public Pair add(Pair other) {
+        return new Pair(first + other.first, second + other.second);
+    }
+
+    public void display() {
+        System.out.println(this);
+    }
+
+    @Override
+    public String toString() {
+        return "(" + first + ", " + second + ")";
+    }
+}
