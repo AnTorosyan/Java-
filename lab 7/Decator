@@ -1,0 +1,13 @@
+public abstract class DomDecorator implements Dom {
+
+    protected Dom dom;
+
+    public DomDecorator(Dom dom) {
+        this.dom = dom;
+    }
+
+    @Override
+    public void showInfo() {
+        dom.showInfo();
+    }
+}
