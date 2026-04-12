@@ -1,0 +1,30 @@
+import java.time.LocalDateTime;
+
+public class Main {
+    public static void main(String[] args) {
+
+        StationGraph graph = new StationGraph();
+        graph.addStation("MSK");
+        graph.addStation("SPB");
+        graph.addStation("KZN");
+
+        TrainOperationsManager manager = new TrainOperationsManager();
+
+        // Подписчики событий
+        manager.addListener(new OperationMissingDefectDetector());
+
+
+manager.addListener(new StationMissingDefectDetector(graph));
+
+        // Добавляем операции
+        manager.addOperation(new TrainOperation(
+                OperationType.ARRIVAL,
+                LocalDateTime.now(),
+                "MSK"));
+
+        manager.addOperation(new TrainOperation(
+                OperationType.DEPARTURE,
+                LocalDateTime.now(),
+                "SPB"));
+    }
+}
