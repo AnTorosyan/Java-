@@ -1,0 +1,22 @@
+public class Main {
+    public static void main(String[] args) {
+
+        System.out.println("1️⃣ Обычный дом:");
+        Dom dom1 = new ProstoyDom();
+        dom1.showInfo();
+
+        System.out.println("\n2️⃣ Дом с цоколем:");
+        Dom dom2 = new DomSCokolem(new ProstoyDom());
+        dom2.showInfo();
+
+        System.out.println("\n3️⃣ Дом с мансардой:");
+        Dom dom3 = new DomSMansardoy(new ProstoyDom());
+        dom3.showInfo();
+
+        System.out.println("\n4️⃣ Дом с цоколем и мансардой:");
+        Dom dom4 = new DomSMansardoy(
+                        new DomSCokolem(
+                                new ProstoyDom()));
+        dom4.showInfo();
+    }
+}
