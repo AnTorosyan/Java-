@@ -1,0 +1,27 @@
+import java.util.*;
+
+public class TrainOperationsManager {
+
+    private List<TrainOperation> operations = new ArrayList<>();
+    private List<OperationListener> listeners = new ArrayList<>();
+
+    public void addListener(OperationListener listener) {
+        listeners.add(listener);
+    }
+
+    public void addOperation(TrainOperation op) {
+        operations.add(op);
+        notifyListeners();
+    }
+
+    public void removeOperation(TrainOperation op) {
+        operations.remove(op);
+        notifyListeners();
+    }
+
+    private void notifyListeners() {
+        for (OperationListener l : listeners) {
+            l.onOperationsChanged(Collections.unmodifiableList(operations));
+        }
+    }
+}
