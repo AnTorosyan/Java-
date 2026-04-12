@@ -1,0 +1,26 @@
+import java.util.*;
+
+public class StationMissingDefectDetector implements OperationListener {
+
+    private StationGraph graph;
+
+    public StationMissingDefectDetector(StationGraph graph) {
+        this.graph = graph;
+    }
+
+    @Override
+    public void onOperationsChanged(List<TrainOperation> operations) {
+
+        Set<String> usedStations = new HashSet<>();
+        for (TrainOperation op : operations)
+            usedStations.add(op.getStationCode());
+
+        System.out.println("\nПроверка дефекта станций:");
+
+        for (String station : graph.getStations()) {
+            if (!usedStations.contains(station)) {
+                System.out.println("❗ Нет операций по станции: " + station);
+            }
+        }
+    }
+}
