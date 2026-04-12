@@ -1,0 +1,16 @@
+public class DomSMansardoy extends DomDecorator {
+
+    public DomSMansardoy(Dom dom) {
+        super(dom);
+    }
+
+    @Override
+    public void showInfo() {
+        super.showInfo();
+        addMansarda();
+    }
+
+    private void addMansarda() {
+        System.out.println("+ Добавлена мансарда.");
+    }
+}
