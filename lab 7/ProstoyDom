@@ -1,0 +1,7 @@
+public class ProstoyDom implements Dom {
+
+    @Override
+    public void showInfo() {
+        System.out.println("Простой дом: 1 этаж, крыша, окна, дверь.");
+    }
+}
