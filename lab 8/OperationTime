@@ -1,0 +1,18 @@
+import java.time.LocalDateTime;
+
+public class TrainOperation {
+
+    private OperationType type;
+    private LocalDateTime time;
+    private String stationCode;
+
+    public TrainOperation(OperationType type, LocalDateTime time, String stationCode) {
+        this.type = type;
+        this.time = time;
+        this.stationCode = stationCode;
+    }
+
+    public OperationType getType() { return type; }
+    public LocalDateTime getTime() { return time; }
+    public String getStationCode() { return stationCode; }
+}
