@@ -1,0 +1,14 @@
+import java.util.*;
+
+public class StationGraph {
+
+    private Set<String> stations = new HashSet<>();
+
+    public void addStation(String code) {
+        stations.add(code);
+    }
+
+    public Set<String> getStations() {
+        return stations;
+    }
+}
