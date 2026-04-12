@@ -1,0 +1,11 @@
+public class Station {
+    private String code;
+
+    public Station(String code) {
+        this.code = code;
+    }
+
+    public String getCode() {
+        return code;
+    }
+}
