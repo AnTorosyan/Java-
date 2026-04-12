@@ -1,0 +1,34 @@
+
+import java.util.*;
+
+public class OperationMissingDefectDetector implements OperationListener {
+
+    @Override
+    public void onOperationsChanged(List<TrainOperation> operations) {
+
+        Map<String, Set<OperationType>> map = new HashMap<>();
+
+        for (TrainOperation op : operations) {
+            map.putIfAbsent(op.getStationCode(), new HashSet<>());
+            map.get(op.getStationCode()).add(op.getType());
+        }
+
+        System.out.println("\nПроверка дефекта операций:");
+
+        for (String station : map.keySet()) {
+            Set<OperationType> ops = map.get(station);
+
+            if (ops.contains(OperationType.ARRIVAL) &&
+                !ops.contains(OperationType.DEPARTURE)) {
+
+                System.out.println("❗ Есть прибытие без отправления: " + station);
+            }
+
+            if (ops.contains(OperationType.DEPARTURE) &&
+                !ops.contains(OperationType.ARRIVAL)) {
+
+                System.out.println("❗ Есть отправление без прибытия: " + station);
+            }
+        }
+    }
+}
