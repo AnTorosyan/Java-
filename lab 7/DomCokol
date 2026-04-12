@@ -1,0 +1,16 @@
+public class DomSCokolem extends DomDecorator {
+
+    public DomSCokolem(Dom dom) {
+        super(dom);
+    }
+
+    @Override
+    public void showInfo() {
+        super.showInfo();
+        addCokol();
+    }
+
+    private void addCokol() {
+        System.out.println("+ Добавлен цокольный этаж (подвал).");
+    }
+}
