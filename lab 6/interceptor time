@@ -1,0 +1,23 @@
+package encryption.interceptor;
+
+import jakarta.interceptor.AroundInvoke;
+import jakarta.interceptor.Interceptor;
+import jakarta.interceptor.InvocationContext;
+
+@LogExecutionTime
+@Interceptor
+public class ExecutionTimeInterceptor {
+
+    @AroundInvoke
+    public Object measureTime(InvocationContext ctx) throws Exception {
+        long start = System.nanoTime();
+
+        Object result = ctx.proceed();
+
+        long end = System.nanoTime();
+        System.out.println("Method " + ctx.getMethod().getName()
+                + " executed in " + (end - start) + " ns");
+
+        return result;
+    }
+}
