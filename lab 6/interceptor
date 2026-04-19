@@ -1,0 +1,9 @@
+package encryption.interceptor;
+
+import jakarta.interceptor.InterceptorBinding;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+
+@InterceptorBinding
+RetentionPolicy.RUNTIME
+public @interface LogExecutionTime {}
