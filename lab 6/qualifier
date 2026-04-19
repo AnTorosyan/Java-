@@ -1,0 +1,19 @@
+package encryption.api;
+
+import jakarta.inject.Qualifier;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+
+@Qualifier
+RetentionPolicy.RUNTIME
+public @interface CaesarQualifier {}
+
+
+@Qualifier
+RetentionPolicy.RUNTIME
+public @interface VigenereQualifier {}
+
+
+@Qualifier
+RetentionPolicy.RUNTIME
+public @interface BaconQualifier {}
