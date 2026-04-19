@@ -1,0 +1,19 @@
+@VigenereQualifier
+@LogExecutionTime
+public class VigenereEncryptor implements Encryptor {
+
+    private static final String KEY = "KEY";
+
+    @id86240433 (@Override)
+    public String encrypt(String text) {
+        StringBuilder result = new StringBuilder();
+        int keyIndex = 0;
+
+        for (char c : text.toCharArray()) {
+            int shift = KEY.charAt(keyIndex) % 26;
+            result.append((char) (c + shift));
+            keyIndex = (keyIndex + 1) % KEY.length();
+        }
+        return result.toString();
+    }
+}
