@@ -5,5 +5,5 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
 @InterceptorBinding
-RetentionPolicy.RUNTIME
+@RetentionPolicy.RUNTIME
 public @interface LogExecutionTime {}
