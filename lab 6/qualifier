@@ -5,15 +5,15 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
 @Qualifier
-RetentionPolicy.RUNTIME
+@RetentionPolicy.RUNTIME
 public @interface CaesarQualifier {}
 
 
 @Qualifier
-RetentionPolicy.RUNTIME
+@RetentionPolicy.RUNTIME
 public @interface VigenereQualifier {}
 
 
 @Qualifier
-RetentionPolicy.RUNTIME
+@RetentionPolicy.RUNTIME
 public @interface BaconQualifier {}
