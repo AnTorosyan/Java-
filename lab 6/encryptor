@@ -1,0 +1,5 @@
+package encryption.api;
+
+public interface Encryptor {
+    String encrypt(String text);
+}
