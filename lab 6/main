@@ -1,0 +1,15 @@
+import encryption.service.EncryptionService;
+import jakarta.enterprise.inject.se.SeContainer;
+import jakarta.enterprise.inject.se.SeContainerInitializer;
+
+public class Main {
+    public static void main(String[] args) {
+
+        SeContainer container = SeContainerInitializer.newInstance().initialize();
+        EncryptionService service = container.select(EncryptionService.class).get();
+
+        service.encryptText("HELLO CDI");
+
+        container.close();
+    }
+}
