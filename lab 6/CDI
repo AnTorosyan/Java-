@@ -1,0 +1,15 @@
+package encryption.service;
+
+import encryption.api.*;
+import jakarta.inject.Inject;
+
+public class EncryptionService {
+
+    @id30216010 (@Inject)
+    @CaesarQualifier
+    Encryptor encryptor;
+
+    public void encryptText(String text) {
+        System.out.println("Encrypted: " + encryptor.encrypt(text));
+    }
+}
