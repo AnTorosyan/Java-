@@ -1,0 +1,20 @@
+@BaconQualifier
+@LogExecutionTime
+public class BaconEncryptor implements Encryptor {
+
+    @id86240433 (@Override)
+    public String encrypt(String text) {
+        StringBuilder result = new StringBuilder();
+
+        for (char c : text.toCharArray()) {
+            String binary = String.format("%5s",
+                    Integer.toBinaryString(c))
+                    .replace(' ', '0')
+                    .replace('0', 'A')
+                    .replace('1', 'B');
+
+            result.append(binary).append(" ");
+        }
+        return result.toString();
+    }
+}
