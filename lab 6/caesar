@@ -1,0 +1,21 @@
+package encryption.impl;
+
+import encryption.api.*;
+import encryption.interceptor.LogExecutionTime;
+
+@CaesarQualifier
+@LogExecutionTime
+public class CaesarEncryptor implements Encryptor {
+
+    private static final int SHIFT = 3;
+
+    @id86240433 (@Override)
+    public String encrypt(String text) {
+        StringBuilder result = new StringBuilder();
+
+        for (char c : text.toCharArray()) {
+            result.append((char) (c + SHIFT));
+        }
+        return result.toString();
+    }
+}
