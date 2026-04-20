@@ -1,0 +1,56 @@
+public class StopwatchDecorator extends ClockDecorator {
+    private long startTime = 0;
+    private long stopTime = 0;
+    private boolean isRunning = false;
+    
+    public StopwatchDecorator(Clock clock) {
+        super(clock);
+    }
+    
+    @Override
+    public void start() {
+        super.start();
+        startStopwatch();
+    }
+    
+    @Override
+    public void stop() {
+        super.stop();
+        stopStopwatch();
+    }
+    
+    private void startStopwatch() {
+        startTime = System.currentTimeMillis();
+        isRunning = true;
+        System.out.println("Секундомер запущен");
+    }
+    
+    private void stopStopwatch() {
+        if (isRunning) {
+            stopTime = System.currentTimeMillis();
+            isRunning = false;
+            long elapsed = stopTime - startTime;
+            System.out.println("Секундомер остановлен. Прошло времени: " + elapsed + " мс");
+        }
+    }
+    
+    public void showElapsedTime() {
+        if (isRunning) {
+            long elapsed = System.currentTimeMillis() - startTime;
+            System.out.println("Текущее время секундомера: " + elapsed + " мс");
+        } else if (stopTime > 0) {
+            long elapsed = stopTime - startTime;
+            System.out.println("Последнее измерение секундомера: " + elapsed + " мс");
+        } else {
+            System.out.println("Секундомер не запускался");
+        }
+    }
+    
+    @Override
+    public void showTime() {
+        super.showTime();
+        if (isRunning) {
+            showElapsedTime();
+        }
+    }
+}
