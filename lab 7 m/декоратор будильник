@@ -1,0 +1,48 @@
+public class AlarmDecorator extends ClockDecorator {
+    private String alarmTime = "07:00";  // Время будильника
+    private boolean alarmEnabled = false;
+    
+    public AlarmDecorator(Clock clock) {
+        super(clock);
+    }
+    
+    public void setAlarm(String time) {
+        this.alarmTime = time;
+        System.out.println("Будильник установлен на " + time);
+    }
+    
+    public void enableAlarm() {
+        alarmEnabled = true;
+        System.out.println("Будильник включен на " + alarmTime);
+    }
+    
+    public void disableAlarm() {
+        alarmEnabled = false;
+        System.out.println("Будильник выключен");
+    }
+    
+    private void checkAlarm() {
+        if (alarmEnabled) {
+            String currentTime = java.time.LocalTime.now()
+                .format(java.time.format.DateTimeFormatter.ofPattern("HH:mm"));
+            
+            if (currentTime.equals(alarmTime)) {
+                System.out.println("БУДИЛЬНИК! Время: " + currentTime);
+                // Можно добавить дополнительные действия
+                alarmEnabled = false; // Сброс будильника после срабатывания
+            }
+        }
+    }
+    
+    @Override
+    public void showTime() {
+        super.showTime();
+        checkAlarm();
+    }
+    
+    @Override
+    public void start() {
+        super.start();
+        System.out.println("Будильник активирован");
+    }
+}
