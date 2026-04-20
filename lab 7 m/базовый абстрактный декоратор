@@ -1,0 +1,22 @@
+public abstract class ClockDecorator implements Clock {
+    protected Clock decoratedClock;
+    
+    public ClockDecorator(Clock clock) {
+        this.decoratedClock = clock;
+    }
+    
+    @Override
+    public void showTime() {
+        decoratedClock.showTime();
+    }
+    
+    @Override
+    public void start() {
+        decoratedClock.start();
+    }
+    
+    @Override
+    public void stop() {
+        decoratedClock.stop();
+    }
+}
