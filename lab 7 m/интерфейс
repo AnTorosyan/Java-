@@ -1,0 +1,5 @@
+public interface Clock {
+    void showTime();      // Отображение времени
+    void start();         // Запуск часов
+    void stop();          // Остановка часов
+}
