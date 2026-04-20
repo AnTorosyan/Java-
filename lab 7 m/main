@@ -1,0 +1,80 @@
+public class DecoratorDemo {
+    public static void main(String[] args) throws InterruptedException {
+        System.out.println("=== Демонстрация паттерна Декоратор ===\n");
+        
+        // 1. Простые часы
+        System.out.println("1. Обычные часы:");
+        Clock simpleClock = new SimpleClock();
+        simpleClock.start();
+        simpleClock.showTime();
+        Thread.sleep(2000);
+        simpleClock.showTime();
+        simpleClock.stop();
+        
+        System.out.println("\n" + "=".repeat(50) + "\n");
+        
+        // 2. Часы с секундомером
+        System.out.println("2. Часы с секундомером:");
+        Clock stopwatchClock = new StopwatchDecorator(new SimpleClock());
+        stopwatchClock.start();
+        stopwatchClock.showTime();
+        Thread.sleep(3000);
+        stopwatchClock.showTime();
+        Thread.sleep(2000);
+        stopwatchClock.stop();
+        
+        System.out.println("\n" + "=".repeat(50) + "\n");
+        
+        // 3. Часы с будильником
+        System.out.println("3. Часы с будильником:");
+        AlarmDecorator alarmClock = new AlarmDecorator(new SimpleClock());
+        alarmClock.setAlarm("15:30"); // Установим на ближайшее время для демонстрации
+        alarmClock.enableAlarm();
+        alarmClock.start();
+        alarmClock.showTime();
+        
+        System.out.println("\n" + "=".repeat(50) + "\n");
+        
+        // 4. Часы с двумя декораторами (секундомер + будильник)
+        System.out.println("4. Часы с секундомером И будильником:");
+        StopwatchDecorator advancedClock = new StopwatchDecorator(
+            new AlarmDecorator(new SimpleClock())
+        );
+        advancedClock.start();
+        
+        // Получаем доступ к функциональности будильника через каст
+        AlarmDecorator alarm = (AlarmDecorator) advancedClock.decoratedClock;
+        alarm.setAlarm("15:31");
+        alarm.enableAlarm();
+        
+        // Демонстрация работы
+        for (int i = 0; i < 5; i++) {
+            advancedClock.showTime();
+            Thread.sleep(2000);
+        }
+        advancedClock.stop();
+        
+        System.out.println("\n" + "=".repeat(50) + "\n");
+        
+        // 5. Динамическое добавление декораторов
+        System.out.println("5. Динамическое наращивание функциональности:");
+        Clock baseClock = new SimpleClock();
+        baseClock.start();
+        baseClock.showTime();
+        
+        System.out.println("  → Добавляем секундомер");
+        baseClock = new StopwatchDecorator(baseClock);
+        baseClock.showTime();
+        
+        System.out.println("  → Добавляем будильник");
+        baseClock = new AlarmDecorator(baseClock);
+        ((AlarmDecorator) baseClock).setAlarm("15:32");
+        ((AlarmDecorator) baseClock).enableAlarm();
+        baseClock.showTime();
+        
+        Thread.sleep(3000);
+        baseClock.stop();
+        
+        System.out.println("\n=== Демонстрация завершена ===");
+    }
+}
