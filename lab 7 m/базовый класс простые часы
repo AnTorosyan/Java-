@@ -1,0 +1,27 @@
+public class SimpleClock implements Clock {
+    private boolean running = true;
+    
+    @Override
+    public void showTime() {
+        if (running) {
+            System.out.println("Текущее время: " + 
+                java.time.LocalTime.now().format(
+                    java.time.format.DateTimeFormatter.ofPattern("HH:mm:ss")
+                ));
+        } else {
+            System.out.println("Часы остановлены");
+        }
+    }
+    
+    @Override
+    public void start() {
+        running = true;
+        System.out.println("Простые часы запущены");
+    }
+    
+    @Override
+    public void stop() {
+        running = false;
+        System.out.println("Простые часы остановлены");
+    }
+}
