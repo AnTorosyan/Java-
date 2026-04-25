@@ -2,7 +2,7 @@
 @LogExecutionTime
 public class BaconEncryptor implements Encryptor {
 
-    @id86240433 (@Override)
+    @Override
     public String encrypt(String text) {
         StringBuilder result = new StringBuilder();
 
