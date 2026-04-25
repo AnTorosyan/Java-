@@ -5,7 +5,7 @@ import jakarta.inject.Inject;
 
 public class EncryptionService {
 
-    @id30216010 (@Inject)
+    @Inject
     @CaesarQualifier
     Encryptor encryptor;
 
