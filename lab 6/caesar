@@ -9,7 +9,7 @@ public class CaesarEncryptor implements Encryptor {
 
     private static final int SHIFT = 3;
 
-    @id86240433 (@Override)
+    @Override
     public String encrypt(String text) {
         StringBuilder result = new StringBuilder();
 
