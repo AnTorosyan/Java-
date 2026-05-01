@@ -1,0 +1,25 @@
+package model;
+
+import jakarta.validation.constraints.NotNull;
+
+public class Track {
+
+    @NotNull
+    private Station from;
+
+    @NotNull
+    private Station to;
+
+    public Track(Station from, Station to) {
+        this.from = from;
+        this.to = to;
+    }
+
+    public Station getFrom() {
+        return from;
+    }
+
+    public Station getTo() {
+        return to;
+    }
+}
