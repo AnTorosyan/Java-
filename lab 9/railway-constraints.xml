@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<constraint-mappings
+        xmlns="https://jakarta.ee/xml/ns/validation/mapping"
+        version="3.0">
+
+    <bean class="model.Railway">
+
+        <field name="name">
+            <constraint annotation="jakarta.validation.constraints.NotNull">
+                <message>Название не может быть null (XML)</message>
+            </constraint>
+        </field>
+
+        <field name="lengthKm">
+            <constraint annotation="jakarta.validation.constraints.Max">
+                <element name="value">9000</element>
+                <message>XML: длина не должна превышать 9000 км</message>
+            </constraint>
+        </field>
+
+        <field name="code">
+            <constraint annotation="jakarta.validation.constraints.Pattern">
+                <element name="regexp">^[A-Z]{3}\d{3}$</element>
+                <message>XML: код должен быть вида ABC123</message>
+            </constraint>
+        </field>
+
+    </bean>
+</constraint-mappings>
