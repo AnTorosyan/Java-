@@ -1,0 +1,41 @@
+import jakarta.validation.Validation;
+import jakarta.validation.Validator;
+import jakarta.validation.ValidatorFactory;
+import model.*;
+
+import java.util.List;
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Station a = new Station("A");
+        Station b = new Station("B");
+        Station c = new Station("C");
+        Station d = new Station("D");
+
+        // Связанные районы
+        ManagementArea area1 = new ManagementArea(
+                List.of(a, b),
+                List.of(new Track(a, b))
+        );
+
+        ManagementArea area2 = new ManagementArea(
+                List.of(c, d),
+                List.of(new Track(b, c)) // соединяет районы
+        );
+
+        Railway railway = new Railway(List.of(area1, area2));
+
+        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+        Validator validator = factory.getValidator();
+
+        var violations = validator.validate(railway);
+
+        if (violations.isEmpty()) {
+            System.out.println("Валидация пройдена");
+        } else {
+            violations.forEach(v -> System.out.println(v.getMessage()));
+        }
+    }
+}
