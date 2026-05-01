@@ -1,0 +1,20 @@
+package validation;
+
+import jakarta.validation.Constraint;
+import jakarta.validation.Payload;
+import jakarta.validation.constraints.AssertTrue;
+import java.lang.annotation.*;
+
+@Target(ElementType.TYPE)
+@Retention(RetentionPolicy.RUNTIME)
+@Constraint(validatedBy = {})
+@Documented
+@AssertTrue(message = "Все районы управления должны быть связаны между собой")
+public @interface ConnectedManagementAreas {
+
+    String message() default "Районы управления не образуют единую сеть";
+
+    Class<?>[] groups() default {};
+
+    Class<? extends Payload>[] payload() default {};
+}
