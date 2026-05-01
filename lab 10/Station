@@ -1,0 +1,17 @@
+package model;
+
+import jakarta.validation.constraints.NotBlank;
+
+public class Station {
+
+    @NotBlank
+    private String name;
+
+    public Station(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+}
