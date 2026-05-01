@@ -1,0 +1,30 @@
+import jakarta.validation.*;
+import model.Railway;
+import java.util.Set;
+
+public class Main {
+    public static void main(String[] args) {
+
+        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+        Validator validator = factory.getValidator();
+
+        Railway railway = new Railway(
+                "",          // ошибка NotBlank
+                "R1",        // ошибка Pattern
+                12000,       // ошибка Max
+                1700,        // ошибка Min
+                "wrongMail"  // ошибка Email
+        );
+
+        Set<ConstraintViolation<Railway>> violations = validator.validate(railway);
+
+        if (violations.isEmpty()) {
+            System.out.println("Ошибок нет!");
+        } else {
+            System.out.println("Ошибки валидации:");
+            for (ConstraintViolation<Railway> v : violations) {
+                System.out.println(v.getPropertyPath() + " -> " + v.getMessage());
+            }
+        }
+    }
+}
