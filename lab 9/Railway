@@ -1,0 +1,49 @@
+package model;
+
+import jakarta.validation.constraints.*;
+
+public class Railway {
+
+    @NotBlank(message = "Название дороги не может быть пустым")
+    @Size(min = 3, max = 50, message = "Название должно быть от 3 до 50 символов")
+    private String name;
+
+    // Код дороги: только буквы + цифры, например RZD01
+    @Pattern(regexp = "^[A-Z){2,5}\\d{2}$",
+             message = "Код должен быть вида ABC12")
+    private String code;
+
+    @Min(value = 1, message = "Длина должна быть больше 0")
+    @Max(value = 10000, message = "Слишком большая длина")
+    private int lengthKm;
+
+    @Min(value = 1800, message = "Год открытия не может быть раньше 1800")
+    @Max(value = 2025, message = "Некорректный год")
+    private int yearOpened;
+
+    @Email(message = "Некорректный email")
+    private String contactEmail;
+
+    public Railway() {}
+
+    public Railway(String name, String code, int lengthKm, int yearOpened, String contactEmail) {
+        this.name = name;
+        this.code = code;
+        this.lengthKm = lengthKm;
+        this.yearOpened = yearOpened;
+        this.contactEmail = contactEmail;
+    }
+
+    // getters/setters
+    public String getName() { return name; }
+    public String getCode() { return code; }
+    public int getLengthKm() { return lengthKm; }
+    public int getYearOpened() { return yearOpened; }
+    public String getContactEmail() { return contactEmail; }
+
+    public void setName(String name) { this.name = name; }
+    public void setCode(String code) { this.code = code; }
+    public void setLengthKm(int lengthKm) { this.lengthKm = lengthKm; }
+    public void setYearOpened(int yearOpened) { this.yearOpened = yearOpened; }
+    public void setContactEmail(String contactEmail) { this.contactEmail = contactEmail; }
+}
