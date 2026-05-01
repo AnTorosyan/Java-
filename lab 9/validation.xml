@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<validation-config
+        xmlns="https://jakarta.ee/xml/ns/validation/configuration"
+        version="3.0">
+
+    <default-provider>org.hibernate.validator.HibernateValidator</default-provider>
+
+    <constraint-mapping>META-INF/railway-constraints.xml</constraint-mapping>
+
+</validation-config>
