@@ -1,0 +1,29 @@
+package model;
+
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotEmpty;
+import java.util.List;
+
+public class ManagementArea {
+
+    @NotEmpty
+    @Valid
+    private List<Station> stations;
+
+    @NotEmpty
+    @Valid
+    private List<Track> tracks;
+
+    public ManagementArea(List<Station> stations, List<Track> tracks) {
+        this.stations = stations;
+        this.tracks = tracks;
+    }
+
+    public List<Station> getStations() {
+        return stations;
+    }
+
+    public List<Track> getTracks() {
+        return tracks;
+    }
+}
