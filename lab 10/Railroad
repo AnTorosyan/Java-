@@ -1,0 +1,66 @@
+package model;
+
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotEmpty;
+import validation.ConnectedManagementAreas;
+
+import java.util.*;
+
+@ConnectedManagementAreas
+public class Railway {
+
+    @NotEmpty
+    @Valid
+    private List<ManagementArea> areas;
+
+    public Railway(List<ManagementArea> areas) {
+        this.areas = areas;
+    }
+
+    public List<ManagementArea> getAreas() {
+        return areas;
+    }
+
+    // Метод для агрегированного ограничения
+    public boolean isConnectedManagementAreas() {
+
+        if (areas.isEmpty()) return true;
+
+        Set<String> visitedStations = new HashSet<>();
+        Queue<String> queue = new LinkedList<>();
+
+        // первая станция первой области как старт
+        Station first = areas.get(0).getStations().get(0);
+        queue.add(first.getName());
+        visitedStations.add(first.getName());
+
+        // BFS по всем перегонам всех районов
+        while (!queue.isEmpty()) {
+            String current = queue.poll();
+
+            for (ManagementArea area : areas) {
+                for (Track t : area.getTracks()) {
+
+                    if (t.getFrom().getName().equals(current)
+                            && visitedStations.add(t.getTo().getName())) {
+                        queue.add(t.getTo().getName());
+                    }
+
+                    if (t.getTo().getName().equals(current)
+                            && visitedStations.add(t.getFrom().getName())) {
+                        queue.add(t.getFrom().getName());
+                    }
+                }
+            }
+        }
+
+        // считаем общее число станций
+        long totalStations = areas.stream()
+                .flatMap(a -> a.getStations().stream())
+                .map(Station::getName)
+                .distinct()
+                .count();
+
+        return visitedStations.size() == totalStations;
+    }
+}
