@@ -1,0 +1,46 @@
+package com.example.railway.controller;
+
+import com.example.railway.model.Railway;
+import com.example.railway.service.RailwayService;
+import io.swagger.v3.oas.annotations.Operation;
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.*;
+import java.util.List;
+
+@RestController
+@RequestMapping("/railways")
+@RequiredArgsConstructor
+public class RailwayController {
+
+    private final RailwayService service;
+
+    @Operation(summary = "Получить все железные дороги")
+    @GetMapping
+    public List<Railway> getAll() {
+        return service.getAll();
+    }
+
+    @Operation(summary = "Получить дорогу по ID")
+    @GetMapping("/{id}")
+    public Railway getById(@PathVariable Integer id) {
+        return service.getById(id);
+    }
+
+    @Opearion(summary = "Добавить железную дорогу")
+    @PostMapping
+    public void add(@RequestBody Railway railway) {
+        service.add(railway);
+    }
+
+    @Opearion(summary = "Изменить железную дорогу")
+    @PutMapping
+    public void update(@RequestBody Railway railway) {
+        service.update(railway);
+    }
+
+    @Operation(summary = "Удалить железную дорогу")
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Integer id) {
+        service.delete(id);
+    }
+}
