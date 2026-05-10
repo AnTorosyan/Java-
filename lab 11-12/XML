@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.railway.mapper.RailwayMapper">
+
+    <resultMap id="RailwayMap" type="Railway">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="country" column="country"/>
+        <result property="lengthKm" column="length_km"/>
+        <result property="gauge" column="gauge"/>
+    </resultMap>
+
+    <select id="findAll" resultMap="RailwayMap">
+        SELECT * FROM railways
+    </select>
+
+    <select id="findById" parameterType="int" resultMap="RailwayMap">
+        SELECT * FROM railways WHERE id = #{id}
+    </select>
+
+    <insert id="insert" parameterType="Railway">
+        INSERT INTO railways(name,country,length_km,gauge)
+        VALUES(#{name},#{country},#{lengthKm},#{gauge})
+    </insert>
+
+    <update id="update" parameterType="Railway">
+        UPDATE railways
+        SET name=#{name},
+            country=#{country},
+            length_km=#{lengthKm},
+            gauge=#{gauge}
+        WHERE id=#{id}
+    </update>
+
+    <delete id="delete" parameterType="int">
+        DELETE FROM railways WHERE id=#{id}
+    </delete>
+
+</mapper>
