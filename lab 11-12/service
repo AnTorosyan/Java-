@@ -1,0 +1,34 @@
+package com.example.railway.service;
+
+import com.example.railway.mapper.RailwayMapper;
+import com.example.railway.model.Railway;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+import java.util.List;
+
+@Service
+@RequiredArgsConstructor
+public class RailwayService {
+
+    private final RailwayMapper mapper;
+
+    public List<Railway> getAll() {
+        return mapper.findAll();
+    }
+
+    public Railway getById(Integer id) {
+        return mapper.findById(id);
+    }
+
+    public void add(Railway railway) {
+        mapper.insert(railway);
+    }
+
+    public void update(Railway railway) {
+        mapper.update(railway);
+    }
+
+    public void delete(Integer id) {
+        mapper.delete(id);
+    }
+}
