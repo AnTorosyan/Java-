@@ -1,0 +1,7 @@
+CREATE TABLE railways (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    country VARCHAR(100) NOT NULL,
+    length_km INT,
+    gauge VARCHAR(50)
+);
